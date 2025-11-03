@@ -1,14 +1,17 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall
+CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
-TARGET = snake
-SOURCE = snake.cpp
 
-$(TARGET): $(SOURCE)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SOURCE) $(LDFLAGS)
+all: snake tetris
+
+snake: snake.cpp
+	$(CXX) $(CXXFLAGS) -o snake snake.cpp $(LDFLAGS)
+
+tetris: tetris.cpp
+	$(CXX) $(CXXFLAGS) -o tetris tetris.cpp $(LDFLAGS)
 
 clean:
-	rm -f $(TARGET)
+	rm -f snake tetris
 
-.PHONY: clean
+.PHONY: clean all snake tetris
 
